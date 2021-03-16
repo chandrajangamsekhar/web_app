@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-sm-12">
+    <section class="card">
+      <div class="card-body">
+        <%= simple_form_for(@customer) do |f| %>
+          <div class="form-row">
+            <div class="col-md-3 mb-3">
+              <div class="form-group">
+                <%= f.input :customer_type,
+                  required: true,
+                  input_html: { autocomplete: "customer_type" }
+                %>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="form-group">
+                <%= f.input :username,
+                  required: true,
+                  input_html: { autocomplete: "username" }
+                %>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="form-group">
+                <%= f.input :date_of_birth,
+                  required: true,
+                  input_html: { autocomplete: "date_of_birth" }
+                %>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="form-group">
+                <%= f.input :gender, required: true, input_html: { autocomplete: "gender"} %>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-3 mb-3">
+              <div class="form-group">
+                <%= f.input :phone_number,
+                  required: true,
+                  input_html: { autocomplete: "phone_number" }, label: "phone_number"
+                %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions pull-right">
+            <%= link_to "Cancel", :back, class: "btn btn-default" %>
+            <%= f.button :submit, (@customer.new_record? ? "Create" : "Update"), class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</div>

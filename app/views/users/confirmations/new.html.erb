@@ -1,0 +1,19 @@
+<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {class: "form-signin"}) do |f| %>
+  <h2 class="form-signin-heading">Resend confirmation instructions</h2>
+  <h2 class="form-signin-logo"><img src="/assets/logo.png"></h2>
+  <div class="login-wrap">
+    <%= f.full_error :confirmation_token %>
+    <% resource.class.invite_key_fields.each do |field| -%>
+      <div class="form-inputs">
+       <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" } %>
+      </div>
+    <% end -%>
+    <div class="form-actions">
+      <%= f.button :submit, "Resend Instructions",class: "btn btn-lg btn-info btn-block" %>
+    </div>
+    <%= render "users/shared/links" %>
+  </div>
+<% end %>

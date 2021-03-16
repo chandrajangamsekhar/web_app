@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="white-bg">
+      <nav aria-label="breadcrumb" class="breadcrumb-bottom">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="/"><i class="fa fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="/admin/users">Users</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            User Detail
+            &nbsp;&nbsp;
+            <%= link_to edit_user_path(@user) do %>
+              <i class="fa fa-edit">
+              </i>
+              Edit
+            <% end %>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="row modal_div">
+  <div class="col-md-12">
+    <section class="card">
+      <div class="card-body bio-graph-info">
+        <div class="row mb-3">
+          <div class="col-md-2">
+            <span class="bold">ID </span>:
+          </div>
+          <div class="col-md-4">
+            <%= @user.id %>
+          </div>
+          <div class="col-md-2">
+            <span class="bold"> Email </span>:
+          </div>
+          <div class="col-md-4">
+            <%= @user.email %>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-2">
+            <span class="bold">Role </span>:
+          </div>
+          <div class="col-md-4">
+            <%= @user.user_role %>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-2">
+            <span class="bold">Created at </span>:
+          </div>
+          <div class="col-md-4">
+            <%= format_date_time(@user.created_at) %>
+          </div>
+          <div class="col-md-2">
+            <span class="bold"> Updated At </span>: 
+          </div>
+          <div class="col-md-4">
+            <%= format_date_time(@user.updated_at) %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nav aria-label="breadcrumb" class="breadcrumb-bottom">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/"><i class="fa fa-home"></i> Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="/customers">Customers</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Customer Detail
+          <%= link_to edit_customer_path(@customer) do %>
+            <i class="fa fa-edit">
+            </i>
+            Edit
+          <% end %>  
+        </li>
+      </ol>
+    </nav>
+  </div>
+</div>
+<section class="card">
+  <div class="card-body bio-graph-info">
+    <div class="tab-pane fade active show contract-show" id="details" role="tabpanel" aria-labelledby="details-tab">
+      <%= render 'show' %>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @title || "Web App" %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_include_tag 'application' %>
+    <link href="/assets/application.css" rel="stylesheet">
+    <link href="/assets/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/bootstrap-reset.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/assets/style.css" rel="stylesheet">
+    <link href="/assets/slidebars.css" rel="stylesheet">
+    <link href="/assets/style-responsive.css"rel="stylesheet">
+    <link rel="stylesheet" href="/assets/data-tables/DT_bootstrap.css" />
+
+    <script type="text/javascript" language="javascript" src="/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="/assets/data-tables/DT_bootstrap.js"></script>
+    <script type="text/javascript" src="/assets/chosen-jquery.js"></script>
+    <script type="text/javascript" src="/assets/cable.js"></script>
+    <script type="text/javascript" src="/assets/bootstrap-session-timeout.js"></script>
+    <link href="/assets/chosen.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <section id="container" class="">
+      <%= render 'shared/header' %>
+      <aside>
+        <div id="sidebar" class="nav-collapse overflow-auto">
+          <%= render_navigation %>
+        </div>
+      </aside>
+      <section id="main-content">
+        <section class="wrapper site-min-height" style="overflow: hidden;">
+          <% flash.each do |f| %>
+            <%= render_flash(f) %>
+          <% end %>
+          <div id="overlay">
+            <div class="spinner"></div>
+            <br/>
+            Loading...
+          </div>
+          <%= yield %>
+        </section>
+      </section>
+      <script type="text/javascript">
+        $.extend(true, $.fn.dataTable.defaults, {
+          processing: true,
+          serverSide: true,
+          stateSave: true,
+          stateDuration: -1,
+          pageLength: 25,
+          lengthMenu: [10, 20, 25, 50, 100]
+        });
+        $('.sidebar-toggle-box').on('click', function () {
+          $(document.body).toggleClass('is-sidebar-nav-open');
+          var owl = $("#owl-demo").data("owlCarousel");
+          owl.reinit();
+        });
+        $("#overlay").hide();
+        $(".breadcrumb").parents(".col-lg-12").prepend($("#contracts_filter").html());
+        $("#contracts_filter").html('');
+      </script>
+    </section>
+  </body>
+</html>
+

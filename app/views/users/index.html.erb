@@ -1,0 +1,74 @@
+<style type="text/css">
+  .edit_row .form-control {
+    height: calc(1.5rem + 1px) !important;
+  }
+  .table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+    padding: 10px;
+    white-space: normal;
+  }
+  .toolbar {
+    padding-left: 50%;
+    padding-right: 35px;
+  }
+</style>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="white-bg">
+      <nav aria-label="breadcrumb" class="breadcrumb-bottom">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="/"><i class="fa fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Users
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <section class="card">
+      <div class="card-body">
+        <div class="adv-table">
+          <table id="ajax-table" class="table table-bordered table-striped" style="width: 100%">
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $('#ajax-table').DataTable({
+      processing: false,
+      serverSide: false,
+      dom: 'l<"toolbar">frtip',
+      "pagingType": "full_numbers",
+      ajax: {
+          url: '/admin/users.json',
+          dataSrc: 'users',
+      },
+      initComplete: function(){
+        $("div.toolbar").html("<label> <a href='<%= new_user_path %>' class='btn btn-primary btn-sm'> Invite User + </a> </label>");
+     },
+      columns: [
+          {title: 'ID', data: 'id_link', class: 'id-column'},
+          {title: 'Email', data: 'email', class: 'email-column'},
+          {title: 'Role', data: 'user_role', class: 'role-column'},
+          {title: 'Deactivated At', data: 'deactivated_at', class: 'deactivated-at-column'},
+          {title: 'Deactivated By', data: 'deactivated_by', class: 'deactivated-by-column'},
+          {title: 'Actions', data: 'actions', class: 'actions-column'}
+      ],
+      columnDefs: [
+        {
+          'targets': 5,
+          'orderable': false,
+          'searchable': false
+        }
+      ],
+      order: [['0', 'asc']]
+    });
+  });
+</script>
